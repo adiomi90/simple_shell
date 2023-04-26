@@ -5,30 +5,30 @@
  * @str: string
  * Return: length of the string
  */
-size_t _strlen(const char *str)
+int _strlen(char *str)
 {
-    size_t len = 0;
+	int len = 0;
 
-    if (!str)
-        return (0);
+	if (!str)
+		return (0);
 
-    while (str[len])
-        len++;
-    return (len);
+	while (*str++)
+		len++;
+	return (len);
 }
 
 /**
- * _strstartswith - checks if a string starts with a prefix string
+ * _strstart - checks if a string starts with a prefix string
  * @haystack: string to search
  * @needle: prefix string
  * Return: pointer to the next char of string or NULL
  */
-char *_strstartswith(const char *haystack, const char *needle)
+char *_strstart(const char *haystack, const char *needle)
 {
-    while (*needle)
-        if (*needle++ != *haystack++)
-            return (NULL);
-    return ((char *)haystack);
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
 }
 
 /**
@@ -37,18 +37,16 @@ char *_strstartswith(const char *haystack, const char *needle)
  * @src: source string
  * Return: pointer to destination string
  */
-char *_strcat(char *dest, const char *src)
+char *_strcat(char *dest, char *src)
 {
-    char *ptr = dest;
+	char *str = dest;
 
-    while (*dest)
-        dest++;
-
-    while (*src)
-        *dest++ = *src++;
-
-    *dest = '\0';
-    return (ptr);
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (str);
 }
 
 /**
@@ -57,18 +55,19 @@ char *_strcat(char *dest, const char *src)
  * @src: source string
  * Return: pointer to destination string
  */
-char *_strcpy(char *dest, const char *src)
+char *_strcpy(char *dest, char *src)
 {
-    size_t i;
+	int j = 0;
 
-    if (dest == src || src == NULL)
-        return (dest);
-
-    for (i = 0; src[i]; i++)
-        dest[i] = src[i];
-
-    dest[i] = '\0';
-    return (dest);
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[j])
+	{
+		dest[j] = src[j];
+		j++;
+	}
+	dest[j] = 0;
+	return (dest);
 }
 
 /**
@@ -78,19 +77,17 @@ char *_strcpy(char *dest, const char *src)
  */
 char *_strdup(const char *str)
 {
-    size_t len;
-    char *new_str;
+	int len = 0;
+	char *dest;
 
-    if (str == NULL)
-        return (NULL);
-
-    len = _strlen(str);
-
-    new_str = malloc(sizeof(char) * (len + 1));
-    if (new_str == NULL)
-        return (NULL);
-
-    _strcpy(new_str, str);
-
-    return (new_str);
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		len++;
+	dest = malloc(sizeof(char) * (len + 1));
+	if (!dest)
+		return (NULL);
+	for (len++; len--;)
+		dest[len] = *--str;
+	return (dest);
 }
