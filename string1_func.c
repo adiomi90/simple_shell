@@ -66,7 +66,7 @@ char *_strcpy(char *dest, char *src)
 		dest[j] = src[j];
 		j++;
 	}
-	dest[j] = '\0'; // null terminate the string
+	dest[j] = 0;
 	return (dest);
 }
 
@@ -84,7 +84,7 @@ char *_strdup(const char *str)
 		return (NULL);
 	while (*str++)
 		len++;
-	dest = (char *)malloc(sizeof(char) * (len + 1)); // cast to char *
+	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (NULL);
 	for (len++; len--;)
