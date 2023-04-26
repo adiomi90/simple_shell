@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strcmp - compares two strangs and check if they are same.
+ * _strcmp - compares two strings and check if they are same.
  * @s1: string 1
  * @s2: string 2
  * Return: 0 if strings are same, otherwise 1 or -1.
