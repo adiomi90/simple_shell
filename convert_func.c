@@ -76,7 +76,7 @@ char *_convert_num(long int num, int base, int flag)
 	static char *str;
 	static char buff[50];
 	char sign;
-	char *p;
+	char *ptr;
 	unsigned long n = num;
 
 	if (!(flag & CONVERT_UNSIGNED) && num < 0)
@@ -86,17 +86,17 @@ char *_convert_num(long int num, int base, int flag)
 
 	}
 	str = flag & CONVERT_HEX ? "0123456789abcdef" : "0123456789ABCDEF";
-	p = &buff[49];
-	*p = '\0';
+	ptr = &buff[49];
+	*ptr = '\0';
 
 	do	{
-		*--p = str[n % base];
+		*--ptr = str[n % base];
 		n /= base;
 	} while (n != 0);
 
 	if (sign)
-		*--p = sign;
-	return (p);
+		*--ptr = sign;
+	return (ptr);
 }
 
 /**
