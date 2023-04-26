@@ -47,6 +47,7 @@ int main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		if (check_fd(fd, av))
 			return (EXIT_FAILURE);
+		info->readfd = fd;
 	}
 	fill_env_list(info);
 	hist_read(info);
